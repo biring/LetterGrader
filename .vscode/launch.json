@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug app.exe (gdb, UCRT64)",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/app.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "C:\\msys64\\ucrt64\\bin\\gdb.exe",
+        "setupCommands": [
+          { "text": "-enable-pretty-printing", "description": "Enable pretty printing", "ignoreFailures": true }
+        ],
+        "preLaunchTask": "Build (make)"
+      }
+    ]
+  }
+  
