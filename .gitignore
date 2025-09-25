@@ -1,3 +1,19 @@
+# ----------------------------------
+# *** User customizations ***
+# ----------------------------------
+
+# Build output directories
+/build/
+
+# VS Code workspace
+.vscode/
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# ----------------------------------
+# *** Github's C/C++ .gitignore template ***
+# ----------------------------------
+
 # Prerequisites
 *.d
 
