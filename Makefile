@@ -23,6 +23,7 @@ CFLAGS    = -Wall -Wextra -g -std=c11 -Isrc -Iunity
 LDFLAGS   =
 LDLIBS    = -lm
 BUILD_DIR = build
+OBJ_DIR   = $(BUILD_DIR)/obj
 
 # ----------------------------
 # App (src/main.c + modules)
@@ -31,7 +32,7 @@ SRC_DIR   = src
 APP_BIN   = $(BUILD_DIR)/app
 
 SRCS_APP  := $(wildcard $(SRC_DIR)/*.c)
-OBJS_APP  := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/src_%.o,$(SRCS_APP))
+OBJS_APP  := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/src_%.o,$(SRCS_APP))
 
 # ----------------------------
 # Tests (Unity)
@@ -42,11 +43,10 @@ UNITY_SRC = $(UNITY_DIR)/unity.c
 TEST_BIN  = $(BUILD_DIR)/run_test
 
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.c)
-OBJS_TEST := $(patsubst $(TEST_DIR)/%.c,$(BUILD_DIR)/test_%.o,$(TEST_SRCS))
+OBJS_TEST := $(patsubst $(TEST_DIR)/%.c,$(OBJ_DIR)/test_%.o,$(TEST_SRCS))
 
 MODULE_SRCS := $(filter-out $(SRC_DIR)/main.c,$(SRCS_APP))
-MODULE_OBJS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/src_%.o,$(MODULE_SRCS))
-
+MODULE_OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/src_%.o,$(MODULE_SRCS))
 # ----------------------------
 # Phony targets
 # ----------------------------
@@ -62,8 +62,8 @@ app: $(APP_BIN)
 $(APP_BIN): $(OBJS_APP) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-# Compile src/*.c -> build/src_%.o
-$(BUILD_DIR)/src_%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+# Compile src/*.c -> build/obj/src_%.o
+$(OBJ_DIR)/src_%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run-app: app
@@ -77,8 +77,8 @@ test: $(TEST_BIN)
 $(TEST_BIN): $(MODULE_OBJS) $(OBJS_TEST) $(UNITY_SRC) | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(MODULE_OBJS) $(OBJS_TEST) $(UNITY_SRC) $(LDLIBS)
 
-# Compile test/*.c -> build/test_%.o
-$(BUILD_DIR)/test_%.o: $(TEST_DIR)/%.c | $(BUILD_DIR)
+# Compile test/*.c -> build/obj/test_%.o
+$(OBJ_DIR)/test_%.o: $(TEST_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run-test: test
@@ -87,8 +87,8 @@ run-test: test
 # ----------------------------
 # Utilities
 # ----------------------------
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	rm -rf $(BUILD_DIR)
