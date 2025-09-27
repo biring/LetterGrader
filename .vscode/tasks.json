@@ -41,6 +41,33 @@
           "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
         }
       }
+    },
+    {
+      "label": "Tests: Build (make test)",
+      "type": "shell",
+      "command": "make test",
+      "options": {
+        "shell": { "executable": "C:\\msys64\\usr\\bin\\bash.exe", "args": ["-lc"] },
+        "env": {
+          "MSYSTEM": "UCRT64",
+          "CHERE_INVOKING": "1",
+          "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+        }
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Tests: Run (make run-test)",
+      "type": "shell",
+      "command": "make run-test",
+      "options": {
+        "shell": { "executable": "C:\\msys64\\usr\\bin\\bash.exe", "args": ["-lc"] },
+        "env": {
+          "MSYSTEM": "UCRT64",
+          "CHERE_INVOKING": "1",
+          "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}"
+        }
+      }
     }
   ]
 }
