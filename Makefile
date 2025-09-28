@@ -4,7 +4,7 @@
 # Terminal commands:
 #   make clean      	- Remove all build artifacts
 #   make test       	- Build the Unity test runner (modules + test/*.c)
-#   make run-test   	- Run all unit tests (./build/run_test)
+#   make run-test   	- Run all unit tests (./build/test)
 #   make app        	- Build the application (src/*.c including main.c)
 #   make run-app    	- Run the application (./build/app)
 #
@@ -40,7 +40,7 @@ OBJS_APP  := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/src_%.o,$(SRCS_APP))
 TEST_DIR  = test
 UNITY_DIR = unity
 UNITY_SRC = $(UNITY_DIR)/unity.c
-TEST_BIN  = $(BUILD_DIR)/run_test
+TEST_BIN  = $(BUILD_DIR)/test
 
 TEST_SRCS := $(wildcard $(TEST_DIR)/*.c)
 OBJS_TEST := $(patsubst $(TEST_DIR)/%.c,$(OBJ_DIR)/test_%.o,$(TEST_SRCS))
