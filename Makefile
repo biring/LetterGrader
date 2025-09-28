@@ -17,7 +17,19 @@
 #
 # ======================================================
 
+help:
+	@echo ""
+	@echo "Makefile targets:"
+	@echo "  clean     - Remove build artifacts"
+	@echo "  app       - Build the application (src/*.c incl. main.c)"
+	@echo "  test      - Build the unit tests (binary: ./build/test)"
+	@echo "  run-test  - Run the unit tests (binary: ./build/test)"
+	@echo "  run-app   - Run the application (./build/app)"
+	@echo ""
+
+# ----------------------------
 # Makefile for app + Unity tests (MSYS2/Unix)
+# ----------------------------
 CC        = gcc
 CFLAGS    = -Wall -Wextra -g -std=c11 -Isrc -Iunity
 LDFLAGS   =
