@@ -30,6 +30,7 @@ The application is organized into modular `.c` and `.h` files:
 This project includes a `Makefile` to streamline building the application and running unit tests (Unity framework).
 
 ### ▶️ Available Targets
+- **`make help`** – Show all available Makefile targets. 
 - **`make clean`** – Remove all build artifacts (e.g., `./build/`).
 - **`make app`** – Compile the application and produce the executable at `./build/app`.
 - **`make test`** – Build the unit test runner at `./build/test` (compiles `test/*.c` with Unity plus non-`main.c` sources).
